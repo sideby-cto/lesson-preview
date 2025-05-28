@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lesson Name</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont;
+}
+.card {
+  display: none;
+}
+.card.active {
+  display: block;
+}
+</style>
+</head>
+<body class="bg-gray-100 flex flex-col items-center min-h-screen p-4">
+  <div class="max-w-xl w-full">
+    <h1 class="text-3xl font-bold mb-2">Lesson Name</h1>
+    <p class="mb-4 text-gray-700"> Lesson Description</p>
+    <div id="cardContainer" class="relative bg-white rounded-2xl shadow p-6">
+
+      <div class="card active" id="card0">
+        <span class='text-sm uppercase tracking-wide text-indigo-600'>Reflection Prompts</span><br/>
+        <h2 class="text-xl font-semibold mb-4">Card 1</h2>
+        <p class="text-lg leading-relaxed">🗣 Read the prompt, press record, and share your answer: Think of a past experience that was hurtful but taught you a valuable lesson. What did you learn and how did it impact your life?</p>
+      </div>
+    
+      <div class="card" id="card1">
+        <span class='text-sm uppercase tracking-wide text-indigo-600'>Reflection Prompts</span><br/>
+        <h2 class="text-xl font-semibold mb-4">Card 2</h2>
+        <p class="text-lg leading-relaxed">🗣 Read the prompt, press record, and share your answer: Describe how you might turn this past experience into a story for a child, focusing on the moral. What would the main message be?</p>
+      </div>
+    
+      <div class="card" id="card2">
+        <span class='text-sm uppercase tracking-wide text-indigo-600'>Partner 1</span><br/>
+        <h2 class="text-xl font-semibold mb-4">Card 1</h2>
+        <p class="text-lg leading-relaxed">👋 Greet your partner {PARTNER_FIRST_NAME}, then press More ⬇️.</p>
+      </div>
+    
+      <div class="card" id="card3">
+        <span class='text-sm uppercase tracking-wide text-indigo-600'>Partner 1</span><br/>
+        <h2 class="text-xl font-semibold mb-4">Card 2</h2>
+        <p class="text-lg leading-relaxed">🗣 Share: Have you ever had a situation in the past that taught you a valuable lesson despite being painful? Then, ask {PARTNER_FIRST_NAME} to add to your answer.</p>
+      </div>
+    
+      <div class="card" id="card4">
+        <span class='text-sm uppercase tracking-wide text-indigo-600'>Partner 1</span><br/>
+        <h2 class="text-xl font-semibold mb-4">Card 3</h2>
+        <p class="text-lg leading-relaxed">🔄 Take turns sharing with {PARTNER_FIRST_NAME}: How can you tell a difficult past experience as a story for a child, focusing on its moral? Press More ⬇️ for ideas.</p>
+      </div>
+    
+      <div class="card" id="card5">
+        <span class='text-sm uppercase tracking-wide text-indigo-600'>Partner 1</span><br/>
+        <h2 class="text-xl font-semibold mb-4">Card 4</h2>
+        <p class="text-lg leading-relaxed">Read the scenario under More ⬇️, and problem solve with your partner. 🔄 Take turns sharing: How could you best respond to this situation?</p>
+      </div>
+    
+      <div class="card" id="card6">
+        <span class='text-sm uppercase tracking-wide text-indigo-600'>Partner 1</span><br/>
+        <h2 class="text-xl font-semibold mb-4">Card 5</h2>
+        <p class="text-lg leading-relaxed">🤝 Thank your partner, and share one thing that you learned from them.</p>
+      </div>
+    
+      <div class="flex justify-between mt-6">
+        <button id="prevBtn" class="px-4 py-2 rounded bg-gray-200 disabled:opacity-50">Prev</button>
+        <button id="nextBtn" class="px-4 py-2 rounded bg-indigo-600 text-white">Next</button>
+      </div>
+    </div>
+  </div>
+<script>
+const cards = document.querySelectorAll('.card');
+let current = 0;
+function update() {
+  cards.forEach((c,i)=>c.classList.toggle('active', i===current));
+  document.getElementById('prevBtn').disabled = current===0;
+  document.getElementById('nextBtn').disabled = current===cards.length-1;
+}
+document.getElementById('prevBtn').addEventListener('click', ()=>{ if(current>0) {{ current--; update(); }}});
+document.getElementById('nextBtn').addEventListener('click', ()=>{ if(current<cards.length-1) {{ current++; update(); }}});
+update();
+</script>
+</body>
+</html>
